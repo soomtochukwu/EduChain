@@ -5,6 +5,7 @@ import {
   RainbowKitProvider,
   getDefaultWallets,
   getDefaultConfig,
+  darkTheme,
 } from "@rainbow-me/rainbowkit";
 import {
   argentWallet,
@@ -27,8 +28,8 @@ import { WagmiProvider } from "wagmi";
 const { wallets } = getDefaultWallets();
 
 const config = getDefaultConfig({
-  appName: "RainbowKit demo",
-  projectId: "YOUR_PROJECT_ID",
+  appName: "cuberhack",
+  projectId: "43729b23db241dc0e811f7cbe2318b3b",
   wallets: [
     ...wallets,
     {
@@ -55,7 +56,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <WagmiProvider config={config}>
       <QueryClientProvider client={queryClient}>
-        <RainbowKitProvider initialChain={klaytnBaobab}>
+        <RainbowKitProvider modalSize="compact" initialChain={klaytnBaobab}>
           {children}
         </RainbowKitProvider>
       </QueryClientProvider>

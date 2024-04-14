@@ -37,7 +37,7 @@ const Header = () => {
       </div>
 
       <div className="absolute right-6 flex-row">
-        <ConnectButton />
+        <ConnectButton label="Sign in or Sign up" chainStatus="icon" />
       </div>
     </div>
   );
