@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+
 import "./header.css";
 const paths = [
   {
@@ -34,8 +36,8 @@ const Header = () => {
         </nav>
       </div>
 
-      <div className="absolute right-6">
-        <button className="connect">connect wallet</button>
+      <div className="absolute right-6 flex-row">
+        <ConnectButton />
       </div>
     </div>
   );
