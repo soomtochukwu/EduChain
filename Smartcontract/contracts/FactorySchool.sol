@@ -10,8 +10,8 @@ contract SchoolSystemFactory {
     event SchoolSystemDeployed(address indexed schoolSystem, address indexed owner);
     
     // Function to deploy a new SchoolSystem contract
-    function createSchoolSystem() external {
-        SchoolSystem newSchoolSystem = new SchoolSystem(); // Deploy a new instance of SchoolSystem
+    function createSchoolSystem( string memory name, string memory symbol) external {
+        SchoolSystem newSchoolSystem = new SchoolSystem( name, symbol); // Deploy a new instance of SchoolSystem
         deployedSchoolSystems.push(address(newSchoolSystem)); // Store the address of the deployed contract
         emit SchoolSystemDeployed(address(newSchoolSystem), msg.sender); // Emit an event
     }
