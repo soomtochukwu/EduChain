@@ -65,7 +65,7 @@ contract SchoolSystem is KIP17, Ownable {
         _;
     }
     
-    constructor() KIP17("ClassAttendanceNFT", "CAN") {}
+     constructor(string memory name, string memory symbol) KIP17(name, symbol) {}
     // Function to transfer ownership
   function transferOwnership(address newOwner) public override {
     _transferOwnership(newOwner);
