@@ -8,21 +8,21 @@ import "@klaytn/contracts/access/Ownable.sol";
 contract SchoolSystem is KIP17, Ownable {
     using Counters for Counters.Counter;
 
-    uint public courseCount;
-    uint public lecturerCount;
-    uint public studentCount;
+    uint private courseCount;
+    uint private lecturerCount;
+    uint private studentCount;
 
 // Mapping to store course names and their corresponding IDs
     mapping(string => uint) internal courseNameToId;
-    mapping(address => uint) public lecturerTokens; // Track tokens for each lecturer
-    mapping(address => uint) public studentTokens; // Track tokens for each student
-    mapping(address => bool) public isLecturer;
-    mapping(address => bool) public isStudent;
+    mapping(address => uint) private lecturerTokens; // Track tokens for each lecturer
+    mapping(address => uint) private studentTokens; // Track tokens for each student
+    mapping(address => bool) private isLecturer;
+    mapping(address => bool) private isStudent;
     mapping(uint => Course) public courses;
-    mapping(uint => ClassSession) public classSessions;
+    mapping(uint => ClassSession) private classSessions;
     mapping(address => uint[]) public studentCourses; // Track courses registered by each student
-    mapping(address => mapping(uint => uint)) public studentSessionAttendance; // Track student attendance for each session
-    mapping(address => bool) public lecturerHasCourse;
+    mapping(address => mapping(uint => uint)) private studentSessionAttendance; // Track student attendance for each session
+    mapping(address => bool) private lecturerHasCourse;
 
 
 // Event emitted when a student registers for a course
@@ -67,7 +67,7 @@ contract SchoolSystem is KIP17, Ownable {
     
      constructor(string memory name, string memory symbol) KIP17(name, symbol) {}
     // Function to transfer ownership
-  function transferOwnership(address newOwner) public override {
+  function transferOwnership(address newOwner) public  override {
     _transferOwnership(newOwner);
 }
     function employ_Lecturer(address _lecturer, uint _amount) external onlyAdmin {
@@ -77,7 +77,7 @@ contract SchoolSystem is KIP17, Ownable {
         lecturerCount++;
     }
     function admit_student(address _student, uint _amount) external onlyAdmin {
-        require(!isStudent[_student], "Lecturer already exists");
+        require(!isStudent[_student], "student already exists");
         studentTokens[_student] += _amount;
         isStudent[_student] = true;
         studentCount++;
@@ -124,6 +124,9 @@ function courseNameExists(string memory _name) internal view returns (bool) {
     return courseNameToId[_name] != 0;
 }
 
+    function getCoursesRegisteredByStudent(address _student) external view returns (uint[] memory) {
+    return studentCourses[_student];
+}
 
     
     function createClassSession(uint _courseId, uint _timestamp) external onlyLecturer {
@@ -184,6 +187,16 @@ function courseNameExists(string memory _name) internal view returns (bool) {
     } else {
         return (totalSessionsAttended * 100) / totalSessions;
     }
+}
+
+ function getAllCourseNames() external view returns (string[] memory) {
+    string[] memory names = new string[](courseCount);
+
+    for (uint i = 1; i <= courseCount; i++) {
+        names[i - 1] = courses[i].name;
+    }
+
+    return names;
 }
 
 
