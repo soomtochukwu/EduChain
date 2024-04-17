@@ -1,23 +1,24 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import Link from "next/link";
+import Header from "./Header";
+import { useAccount } from "wagmi";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Delete() {
+  const { status } = useAccount(),
+    router = useRouter();
+  useEffect(() => {
+    status == "connected" ? router.push("/dash") : null;
+  }, [status]);
+
   return (
     <div className="grid  flex-col min-h-[100dvh] ">
-      <header className="px-4 lg:px-6 h-16   flex items-center border-b">
-        <div className="flex items-center  gap-2">
-          <Image
-            alt="Cuber Edu. Logo"
-            width={30}
-            height={30}
-            src={"/images/logo.png "}
-          />
-          <span className="font-bold">Cuber Edu.</span>
-        </div>
-        <Button className="text-sm font-medium ml-auto">0xAbCDeF123...</Button>
-      </header>
+      <Header />
       <section className="w-full py-12 md:py-24 lg:py-32">
         <div className="container px-4 md:px-6">
           <div className="flex flex-col items-center justify-center space-y-4 text-center">
@@ -45,7 +46,7 @@ export default function Delete() {
                 href="#"
               >
               </Link> */}
-              <ConnectButton />
+              <ConnectButton label="Sign in or Login" />
             </div>
           </div>
         </div>

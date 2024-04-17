@@ -10,13 +10,23 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React from "react";
+
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect } from "react";
 import { paths } from "./sidebar";
 import Image from "next/image";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
 
 function DashHeader() {
-  const pathname = usePathname();
+  const pathname = usePathname(),
+    { status } = useAccount(),
+    router = useRouter();
+
+  useEffect(() => {
+    status !== "connected" ? router.push("/") : null;
+  }, [status]);
+
   console.log(pathname);
   return (
     <header className="flex h-14 lg:h-[60px] items-center gap-4 border-b bg-gray-100/40 px-6 dark:bg-gray-800/40">
@@ -40,6 +50,17 @@ function DashHeader() {
         <SearchIcon className="w-4 h-4" />
         <span className="sr-only">Search</span>
       </Button>
+      <ConnectButton
+        accountStatus={{
+          smallScreen: "avatar",
+          largeScreen: "avatar",
+        }}
+        chainStatus="icon"
+        showBalance={{
+          smallScreen: true,
+          largeScreen: true,
+        }}
+      />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button size="icon" variant="ghost">
