@@ -15,8 +15,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import { Input } from "@/components/ui/input";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 import {
   BookIcon,
   CircleUserIcon,
@@ -125,6 +127,17 @@ function Header() {
           <DropdownMenuItem>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
+      <ConnectButton
+        accountStatus={{
+          smallScreen: "avatar",
+          largeScreen: "avatar",
+        }}
+        chainStatus="icon"
+        showBalance={{
+          smallScreen: true,
+          largeScreen: true,
+        }}
+      />
     </header>
   );
 }
