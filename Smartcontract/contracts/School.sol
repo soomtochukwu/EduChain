@@ -40,6 +40,7 @@ contract SchoolSystem is KIP17, Ownable {
         uint enrolledStudents;
         uint sessionId;
         mapping(address => bool) students;
+        string description;
     }
     
     struct ClassSession {
@@ -100,7 +101,7 @@ contract SchoolSystem is KIP17, Ownable {
 }
 
 // Function to create a new course
-function createCourse(string memory _name, uint _capacity) external onlyLecturer {
+function createCourse(string memory _name, uint _capacity, string memory course_desc) external onlyLecturer {
     require(lecturerTokens[msg.sender] > 0, "Insufficient tokens");
     require(!lecturerHasCourse[msg.sender], "Lecturer already has a course");
 
@@ -115,6 +116,7 @@ function createCourse(string memory _name, uint _capacity) external onlyLecturer
     course.capacity = _capacity;
     course.enrolledStudents = 0;
     course.sessionId = 0;
+    course.description = course_desc;
     courseNameToId[_name] = _courseId; // Update course name to ID mapping
     lecturerHasCourse[msg.sender] = true; // Mark lecturer as having a course
     emit CourseCreated(_courseId, _name, msg.sender, _capacity);
