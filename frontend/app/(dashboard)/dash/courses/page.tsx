@@ -1,6 +1,11 @@
+"use client";
+
 import { Course } from "@/lib/types";
 import RegisteredCoursesCard from "./_components/registered-course-card";
 import Link from "next/link";
+import { useAccount, useReadContract, useWriteContract } from "wagmi";
+import { schABI, schAddress } from "@/utils/schoolContract";
+import { useEffect } from "react";
 
 export default function ChatUi() {
   const courses: Course[] = [
@@ -69,6 +74,19 @@ export default function ChatUi() {
       ],
     },
   ];
+
+  const { address } = useAccount(),
+    registeredCourses = useReadContract({
+      abi: schABI,
+      address: schAddress,
+      functionName: "studentCourses",
+      args: [address],
+    });
+
+  useEffect(() => {
+    console.log(registeredCourses.data);
+  }, [registeredCourses]);
+
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
       <div>
