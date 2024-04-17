@@ -23,15 +23,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head></head>
-
       <body className={inter.className + " " + ""}>
         <Providers>
-          <Header></Header>
-
-          <div className="p-2 py-4">{children}</div>
-
-          <Footer></Footer>
+          {/*Removed the padding here: */}
+          <div className="p-0 ">{children}</div>
         </Providers>
       </body>
     </html>
