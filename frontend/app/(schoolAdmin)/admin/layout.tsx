@@ -1,5 +1,15 @@
+import Link from "next/link";
 import Header from "./_components/header";
 import AdminDashboardSidebar from "./_components/sidebar";
+import { Badge, GiftIcon, Home, LineChart, Package, User } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function SchoolAdminLayout({
   children,
