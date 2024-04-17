@@ -1,5 +1,16 @@
+import Link from "next/link";
 import Header from "./_components/header";
 import AdminDashboardSidebar from "./_components/sidebar";
+import { GiftIcon, HomeIcon, LineChart, Package, User } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function SchoolAdminLayout({
   children,
@@ -17,7 +28,7 @@ export default function SchoolAdminLayout({
                 href="#"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
-                <Home className="h-4 w-4" />
+                <HomeIcon className="h-4 w-4" />
                 Dashboard
               </Link>
               <Link
