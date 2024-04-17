@@ -1,4 +1,4 @@
-export const schAddress = '0xc17b5eb13a9a96ef8bce26c13bcc1293bf3bd6ee'
+export const schAddress = '0x6A5c530E67c16d56cdA0F8684DdEC4B96eCD494b'
 export const schABI = [
 	{
 		"inputs": [
@@ -758,4 +758,4 @@ export const schABI = [
 		"stateMutability": "nonpayable",
 		"type": "function"
 	}
-]
+] as const
