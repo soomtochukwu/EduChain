@@ -23,9 +23,9 @@ function DashHeader() {
     { status } = useAccount(),
     router = useRouter();
 
-  useEffect(() => {
-    status !== "connected" ? router.push("/") : null;
-  }, [status]);
+  // useEffect(() => {
+  //   status !== "connected" ? router.push("/") : null;
+  // }, [status]);
 
   console.log(pathname);
   return (
