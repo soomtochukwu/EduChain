@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Header from "./_components/header";
 import AdminDashboardSidebar from "./_components/sidebar";
+
 import { GiftIcon, HomeIcon, LineChart, Package, User } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import {
@@ -21,7 +22,7 @@ export default function SchoolAdminLayout({
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
       <div className="hidden border-r bg-muted/40 md:block">
         <div className="flex h-full max-h-screen flex-col gap-2">
-          <div className="flex-1">
+          <div className="flex-1 ">
             <AdminDashboardSidebar />
             {/* <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
               <Link
