@@ -1,6 +1,5 @@
 "use client";
-import { Package2Icon } from "@/components/icons";
-import { SearchIcon } from "@/components/search-icon";
+import { Package2Icon, SearchIcon } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
