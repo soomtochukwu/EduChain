@@ -1,4 +1,4 @@
-contract = '0xF4A38C107710319C39eAe06384aec2A883a03438'
+contract = '0xc17b5Eb13a9A96ef8bCe26c13BcC1293BF3Bd6ee'
 [
 	{
 		"inputs": [
@@ -206,6 +206,11 @@ contract = '0xF4A38C107710319C39eAe06384aec2A883a03438'
 				"internalType": "uint256",
 				"name": "_capacity",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "course_desc",
+				"type": "string"
 			}
 		],
 		"name": "createCourse",
@@ -522,6 +527,11 @@ contract = '0xF4A38C107710319C39eAe06384aec2A883a03438'
 				"internalType": "uint256",
 				"name": "sessionId",
 				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
 			}
 		],
 		"stateMutability": "view",
