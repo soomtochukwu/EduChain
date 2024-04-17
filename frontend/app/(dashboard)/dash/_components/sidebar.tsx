@@ -57,7 +57,7 @@ function Sidebar() {
               height={30}
               alt="Cuber Education Logo"
             />
-            <span className="">Cuber Edu</span>
+            <span className="">EduChain</span>
           </Link>
           <Button className="ml-auto h-8 w-8" size="icon" variant="outline">
             <BellIcon className="h-4 w-4" />

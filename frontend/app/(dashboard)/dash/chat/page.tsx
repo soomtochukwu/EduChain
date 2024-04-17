@@ -5,7 +5,7 @@ import Chat from "./_components/chat";
 
 export default function ChatPage() {
   return (
-    <div className="flex flex-col">
+    <div className="">
       <Chat />
     </div>
   );
