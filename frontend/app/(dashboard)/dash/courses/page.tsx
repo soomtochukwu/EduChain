@@ -80,18 +80,26 @@ export default function ChatUi() {
       abi: schABI,
       address: schAddress,
       functionName: "studentCourses",
+      // @ts-ignore
       args: [address],
+    }),
+    availableCourses = useReadContract({
+      abi: schABI,
+      address: schAddress,
+      functionName: "getAllCourseNames",
+      // @ts-ignore
+      args: [],
     });
 
   useEffect(() => {
-    console.log(registeredCourses.data);
-  }, [registeredCourses]);
+    console.log(availableCourses.data);
+  }, [availableCourses]);
 
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
       <div>
         <h1>Your courses</h1>
-        <section className="flex gap-2 mb-5">
+        <section className="flex flex-wrap gap-2 mb-5">
           {courses.map((course) => {
             return (
               <RegisteredCoursesCard
@@ -102,16 +110,20 @@ export default function ChatUi() {
           })}
         </section>
         <section className="">
-          <h1>Recommended Courses</h1>
-          <div>
-            {courses.slice(3).map((course) => (
-              <div
-                key={course.enrolledStudents}
-                className="border border-slate-400"
-              >
-                <Link href={"#"}>{course.name}</Link>
-              </div>
-            ))}
+          <h1 className="bg-gray-300 p-2 my-2">Recommended Courses</h1>
+          <div className="flex flex-wrap">
+            {availableCourses.data?.map((x) => {
+              return (
+                <div
+                  className=" gap-4 p-4 md:gap-8 md:p-7 md:m-1 border-2 rounded-lg border-slate-200"
+                  key={x + 1}
+                >
+                  <Link href={""} key={x}>
+                    {x}
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         </section>
       </div>

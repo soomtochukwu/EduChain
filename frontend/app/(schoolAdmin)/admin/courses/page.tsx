@@ -8,7 +8,7 @@ export default function CoursesPage() {
   const [courseTitle, setCourseTitle] = useState(""),
     [capacity, setCapacity] = useState(0),
     [description, setDescription] = useState(""),
-    { writeContract } = useWriteContract();
+    { writeContractAsync } = useWriteContract();
 
   return (
     <main className="flex justify-center items-center gap-4 p-4 lg:gap-6 lg:p-6">
@@ -47,11 +47,11 @@ export default function CoursesPage() {
           <button
             className=" bg-gray-700:click w-full bg-gray-600 p-2 m-1 rounded-lg text-white"
             onClick={() => {
-              writeContract({
+              writeContractAsync({
                 abi: schABI,
                 address: schAddress,
                 functionName: "createCourse",
-                args: [courseTitle, capacity, description],
+                args: [courseTitle, BigInt(capacity), description],
               });
             }}
           >
