@@ -58,7 +58,7 @@ export function AdminDashboardSidebar() {
               Teachers
             </Link>
             <Link
-              href="#"
+              href="/admin/courses"
               className="flex items-center gap-3 rounded-lg bg-mutedd px-3 py-2 text-primary transition-all hover:text-primary"
             >
               <BookIcon className="h-4 w-4" />

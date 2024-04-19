@@ -16,9 +16,7 @@ const Header = () => {
           />
           <span className="font-bold">EduBlock</span>
         </div>
-        <div className="text-sm font-medium ml-auto">
-          <ConnectButton label="Sign in or Login" />
-        </div>
+        <div className="text-sm font-medium ml-auto"></div>
       </header>
     </div>
   );
