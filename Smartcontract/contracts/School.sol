@@ -238,6 +238,34 @@ contract SchoolSystem is KIP17, Ownable {
         return names;
     }
 
+    function getAllCourses()
+        external
+        view
+        returns (
+            string[] memory,
+            address[] memory,
+            uint[] memory,
+            uint[] memory,
+            string[] memory
+        )
+    {
+        string[] memory names = new string[](courseCount);
+        address[] memory lecturers = new address[](courseCount);
+        uint[] memory capacities = new uint[](courseCount);
+        uint[] memory enrolledStudents = new uint[](courseCount);
+        string[] memory descriptions = new string[](courseCount);
+
+        for (uint i = 0; i < courseCount; i++) {
+            names[i] = courses[i + 1].name;
+            lecturers[i] = courses[i + 1].lecturer;
+            capacities[i] = courses[i + 1].capacity;
+            enrolledStudents[i] = courses[i + 1].enrolledStudents;
+            descriptions[i] = courses[i + 1].description;
+        }
+
+        return (names, lecturers, capacities, enrolledStudents, descriptions);
+    }
+
     function getCourseSessionIds(
         uint _courseId
     ) internal view returns (uint[] memory) {
