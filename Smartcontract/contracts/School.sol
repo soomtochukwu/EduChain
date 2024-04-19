@@ -19,6 +19,7 @@ contract SchoolSystem is KIP17, Ownable {
     mapping(address => bool) private isLecturer;
     mapping(address => bool) private isStudent;
     mapping(uint => Course) public courses;
+    address[] public students;
     mapping(uint => ClassSession) private classSessions;
     mapping(address => uint[]) public studentCourses; // Track courses registered by each student
     mapping(address => mapping(uint => uint)) private studentSessionAttendance; // Track student attendance for each session
@@ -88,6 +89,7 @@ contract SchoolSystem is KIP17, Ownable {
         require(!isStudent[_student], "student already exists");
         studentTokens[_student] += _amount;
         isStudent[_student] = true;
+        students.push(_student);
         studentCount++;
     }
 
@@ -264,6 +266,10 @@ contract SchoolSystem is KIP17, Ownable {
         }
 
         return (names, lecturers, capacities, enrolledStudents, descriptions);
+    }
+
+    function getListOfStudents() public view returns (address[] memory) {
+        return students;
     }
 
     function getCourseSessionIds(

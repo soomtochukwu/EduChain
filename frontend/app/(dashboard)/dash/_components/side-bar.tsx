@@ -1,7 +1,10 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 
 import {
   Bell,
+  PersonStanding,
   BookIcon,
   GiftIcon,
   Home,
@@ -13,8 +16,11 @@ import {
 import Link from "next/link";
 import React from "react";
 import { paths } from "./sidebar";
+import { useAccount } from "wagmi";
 
 export function Sidebar() {
+  const { address } = useAccount();
+
   return (
     <div className="hidden border-r bg-muted/40 md:block">
       <div className="flex h-full max-h-screen flex-col gap-2">
@@ -43,12 +49,12 @@ export function Sidebar() {
               );
             })}
 
-            <Link
-              href="/admin"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
-            >
-              {" "}
-            </Link>
+            {address == ("0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" || "") ? (
+              <div className="flex items-center">
+                <PersonStanding></PersonStanding>
+                <Link href={"/admin"}>Admin</Link>
+              </div>
+            ) : null}
           </nav>
         </div>
       </div>

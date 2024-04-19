@@ -24,6 +24,7 @@ import {
   ShoppingCart,
   Users,
 } from "lucide-react";
+import { useAccount } from "wagmi";
 
 export const paths = [
   {
@@ -53,6 +54,8 @@ export const paths = [
   },
 ];
 function Sidebar() {
+  const //
+    { address } = useAccount();
   return (
     <div className="hidden border-r bg-muted/40 md:block">
       <div className="flex h-full max-h-screen flex-col gap-2">
@@ -80,6 +83,9 @@ function Sidebar() {
                 </Link>
               );
             })}
+            {address == "0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" ? (
+              <Link href={"/admin"}>Admin</Link>
+            ) : null}
           </nav>
         </div>
         {/* <div className="mt-auto p-4">

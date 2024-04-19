@@ -23,11 +23,15 @@ export default function SchoolAdminLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { status } = useAccount(),
+  const { status, address } = useAccount(),
     router = useRouter();
 
   useEffect(() => {
-    status !== "connected" ? router.push("/") : null;
+    // status !== "connected" ? router.push("/") : null;
+    // status == "connected" ? router.push("/admin") : null;
+    address !== ("0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" || "")
+      ? router.push("/")
+      : null;
   }, [status]);
 
   return (
