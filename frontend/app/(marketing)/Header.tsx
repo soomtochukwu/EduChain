@@ -5,8 +5,8 @@ import React from "react";
 
 const Header = () => {
   return (
-    <div>
-      <header className="px-4 lg:px-6 h-16   flex items-center border-b">
+    <div className="flex justify-center">
+      <header className="px-4 lg:px-6 h-16 w-3/4   flex items-center border-b">
         <div className="flex items-center  gap-2">
           <Image
             alt="Cuber Edu. Logo"
