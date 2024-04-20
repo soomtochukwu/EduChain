@@ -19,6 +19,7 @@ contract SchoolSystem is KIP17, Ownable {
     mapping(address => bool) private isLecturer;
     mapping(address => bool) private isStudent;
     mapping(uint => Course) public courses;
+    address[] public students;
     mapping(uint => ClassSession) private classSessions;
     mapping(address => uint[]) public studentCourses; // Track courses registered by each student
     mapping(address => mapping(uint => uint)) private studentSessionAttendance; // Track student attendance for each session
@@ -88,6 +89,7 @@ contract SchoolSystem is KIP17, Ownable {
         require(!isStudent[_student], "student already exists");
         studentTokens[_student] += _amount;
         isStudent[_student] = true;
+        students.push(_student);
         studentCount++;
     }
 
@@ -236,6 +238,38 @@ contract SchoolSystem is KIP17, Ownable {
         }
 
         return names;
+    }
+
+    function getAllCourses()
+        external
+        view
+        returns (
+            string[] memory,
+            address[] memory,
+            uint[] memory,
+            uint[] memory,
+            string[] memory
+        )
+    {
+        string[] memory names = new string[](courseCount);
+        address[] memory lecturers = new address[](courseCount);
+        uint[] memory capacities = new uint[](courseCount);
+        uint[] memory enrolledStudents = new uint[](courseCount);
+        string[] memory descriptions = new string[](courseCount);
+
+        for (uint i = 0; i < courseCount; i++) {
+            names[i] = courses[i + 1].name;
+            lecturers[i] = courses[i + 1].lecturer;
+            capacities[i] = courses[i + 1].capacity;
+            enrolledStudents[i] = courses[i + 1].enrolledStudents;
+            descriptions[i] = courses[i + 1].description;
+        }
+
+        return (names, lecturers, capacities, enrolledStudents, descriptions);
+    }
+
+    function getListOfStudents() public view returns (address[] memory) {
+        return students;
     }
 
     function getCourseSessionIds(

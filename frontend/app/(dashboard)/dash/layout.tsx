@@ -1,14 +1,25 @@
+"use client";
+
 import Sidebar from "./_components/sidebar";
 
 import DashHeader from "./_components/dash-header";
 import Header from "./_components/header";
 import SSidebar from "./_components/side-bar";
+import { useAccount } from "wagmi";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { status } = useAccount(),
+    router = useRouter();
+
+  useEffect(() => {
+    status !== "connected" ? router.push("/") : null;
+  }, [status]);
   return (
     <>
       {/* <div key="1" className="grid min-h-screen w-full lg:grid-cols-[280px_1fr]">

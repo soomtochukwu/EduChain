@@ -1,20 +1,72 @@
 "use client";
 
 import { schABI, schAddress } from "@/utils/schoolContract";
-import { useState } from "react";
-import { useReadContract, useWriteContract } from "wagmi";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { title } from "process";
+import { useEffect, useState } from "react";
+import {
+  useReadContract,
+  useWatchContractEvent,
+  useWriteContract,
+} from "wagmi";
 
 export default function CoursesPage() {
-  const [courseTitle, setCourseTitle] = useState(""),
+  const //
+    [courseTitle, setCourseTitle] = useState(""),
     [capacity, setCapacity] = useState(0),
     [description, setDescription] = useState(""),
-    { writeContractAsync } = useWriteContract();
+    //
+    [_title, _setTitle] = useState<string[]>([]),
+    [_lecturer, _setLecturer] = useState<string[]>([]),
+    [_capacity, _setCapacity] = useState<bigint[]>([]),
+    [_enrolledStudents, _setEnrolledStudents] = useState<bigint[]>([]),
+    [_description, _setDescription] = useState<string[]>([]),
+    //
+    { writeContractAsync, status } = useWriteContract(),
+    { refresh } = useRouter();
 
+  let availableCourses = useReadContract({
+    abi: schABI,
+    address: schAddress,
+    functionName: "getAllCourses",
+    // @ts-ignore
+    args: [],
+  });
+  //
+
+  useWatchContractEvent({
+    address: schAddress,
+    abi: schABI,
+    eventName: "CourseCreated",
+    onLogs(logs) {
+      console.log("New logs!", logs);
+    },
+  });
+
+  useEffect(() => {
+    const data = availableCourses.data;
+    //
+    _setTitle(data?.[0] as string[]);
+    _setLecturer(data?.[1] as string[]);
+    _setCapacity(data?.[2] as bigint[]);
+    _setEnrolledStudents(data?.[3] as bigint[]);
+    _setDescription(data?.[4] as string[]);
+    //
+  }, [availableCourses]);
+
+  useEffect(() => {
+    if (status == "success") {
+      setTimeout(() => {
+        refresh();
+      }, 2000);
+    }
+  }, [status]);
   return (
-    <main className="flex justify-center items-center gap-4 p-4 lg:gap-6 lg:p-6">
+    <main className="w-1/2  gap-4 p-4 lg:gap-6 lg:p-6 ">
       <div>
         create courses
-        <div className="w-fit">
+        <div className="w-fit ">
           <form className="flex flex-col">
             <div>
               <input
@@ -45,7 +97,7 @@ export default function CoursesPage() {
             />
           </form>
           <button
-            className=" bg-gray-700:click w-full bg-gray-600 p-2 m-1 rounded-lg text-white"
+            className="active:bg-gray-600 w-full bg-gray-500 p-2 m-1 rounded-lg text-white"
             onClick={() => {
               writeContractAsync({
                 abi: schABI,
@@ -55,8 +107,29 @@ export default function CoursesPage() {
               });
             }}
           >
-            Create Course
+            {status == ("pending" || "success") ? status : "Create course"}
           </button>
+        </div>
+        Existing Courses
+        <div className=" flex flex-wrap flex-col justify-center items-center ">
+          {_title !== undefined
+            ? _title.map((element, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="md:w-fit p-2 my-2 bg-gray-200 rounded-lg"
+                  >
+                    <div>
+                      <div>Title: {_title[index]}</div>
+                      <div>Lecturer: {_lecturer[index]}</div>
+                      <div>Capacity: {_capacity[index]}</div>
+                      <div>Enrolled Students: {_enrolledStudents[index]}</div>
+                      <div>Description: {_description[index]}</div>
+                    </div>
+                  </div>
+                );
+              })
+            : null}
         </div>
       </div>
     </main>

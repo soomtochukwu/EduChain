@@ -22,6 +22,7 @@ import {
   Menu,
   Package,
   Package2Icon,
+  PersonStanding,
   Search,
   ShoppingCart,
   User,
@@ -34,7 +35,7 @@ import { useAccount } from "wagmi";
 
 function Header() {
   const pathname = usePathname(),
-    { status } = useAccount(),
+    { address } = useAccount(),
     router = useRouter();
 
   // useEffect(() => {
@@ -69,7 +70,7 @@ function Header() {
               </Badge>
             </Link>
             <Link
-              href="#"
+              href="/dash/courses"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
             >
               <BookIcon className="h-4 w-4" />
@@ -99,6 +100,15 @@ function Header() {
               <LineChart className="h-4 w-4" />
               Latest Activity
             </Link>
+            {address == ("0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" || "") ? (
+              <Link
+                href={"/admin"}
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+              >
+                <PersonStanding></PersonStanding>
+                Admin
+              </Link>
+            ) : null}
           </nav>
         </SheetContent>
       </Sheet>

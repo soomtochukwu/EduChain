@@ -56,7 +56,7 @@ function Header() {
               Dashboard
             </Link>
             <Link
-              href="#"
+              href="/admin/students"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
             >
               <User className="h-4 w-4" />
@@ -66,7 +66,7 @@ function Header() {
               </Badge>
             </Link>
             <Link
-              href="#"
+              href="/admin/courses"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
             >
               <BookIcon className="h-4 w-4" />
@@ -96,6 +96,13 @@ function Header() {
               <LineChart className="h-4 w-4" />
               Latest Activity
             </Link>
+            <Link
+              href="#"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+            >
+              <LineChart className="h-4 w-4" />
+              Latest Activity
+            </Link>
           </nav>
         </SheetContent>
       </Sheet>
@@ -111,6 +118,17 @@ function Header() {
           </div>
         </form>
       </div>
+      <ConnectButton
+        accountStatus={{
+          smallScreen: "avatar",
+          largeScreen: "avatar",
+        }}
+        chainStatus="icon"
+        showBalance={{
+          smallScreen: true,
+          largeScreen: true,
+        }}
+      />
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" size="icon" className="rounded-full">
@@ -127,17 +145,6 @@ function Header() {
           <DropdownMenuItem>Logout</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
-      <ConnectButton
-        accountStatus={{
-          smallScreen: "avatar",
-          largeScreen: "avatar",
-        }}
-        chainStatus="icon"
-        showBalance={{
-          smallScreen: true,
-          largeScreen: true,
-        }}
-      />
     </header>
   );
 }
