@@ -10,5 +10,23 @@ module.exports = {
       gasPrice: 250000000000,
       accounts: ["0389d72491ccb7092bcd453fd96d28f553820bfac9c59b069efd61ddc0010944"],
     }
+  },
+  etherscan: {
+    apiKey: {
+      baobab: "unnecessary",
+    },
+    customChains: [
+      {
+        network: "baobab",
+        chainId: 1001,
+        urls: {
+          apiURL: "https://api-baobab.klaytnscope.com/api",
+          browserURL: "https://baobab.klaytnscope.com",
+        },
+      },
+    ]
+  },
+  sourcify: {
+    enabled: false
   }
 };

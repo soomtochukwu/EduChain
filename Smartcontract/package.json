@@ -18,6 +18,7 @@
   "homepage": "https://github.com/soomtochukwu/cuberhack#readme",
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.1.8",
     "hardhat": "^2.22.2"
   },
   "dependencies": {
