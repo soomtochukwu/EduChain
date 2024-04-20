@@ -14,7 +14,7 @@ const Header = () => {
             height={30}
             src={"/images/logo.png "}
           />
-          <span className="font-bold">EduBlock</span>
+          <span className="font-bold">EduChain</span>
         </div>
         <div className="text-sm font-medium ml-auto">
           <ConnectButton label="Sign in or Login" />

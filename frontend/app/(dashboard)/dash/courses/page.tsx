@@ -35,9 +35,7 @@ export default function ChatUi() {
     args: [],
   });
 
-  useEffect(() => {
-    console.log("registeredCourses.data", registeredCourses.data);
-  }, [registeredCourses.status]);
+  useEffect(() => {}, [registeredCourses.status]);
 
   useEffect(() => {
     const data = availableCourses.data;
@@ -69,7 +67,7 @@ export default function ChatUi() {
               return (
                 <div key={Number(course)}>
                   {Number(course)}:{" "}
-                  {_title !== undefined ? _title[Number(course)] : null}
+                  {_title !== undefined ? _title[Number(course) - 1] : null}
                 </div>
               );
             })}
