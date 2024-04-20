@@ -2,6 +2,7 @@
 
 Cuberhack is building a revolutionary personalized learning system build on [Klaytn](https://docs.klaytn.foundation/docs/build/get-started/) that leverages the power of blockchain and AI to create an engaging and rewarding educational experience. Our Minimum Viable Product (MVP) focuses on core functionalities to validate the concept and gather user feedback for future iterations.
 
+
 ## Key Features:
 ### Personalized Learning Paths:
 - AI analyzes student performance data (stored securely on the blockchain) to identify strengths, weaknesses, and learning styles.
