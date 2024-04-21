@@ -122,8 +122,10 @@ export default function CoursesPage() {
                     <div>
                       <div>Title: {_title[index]}</div>
                       <div>Lecturer: {_lecturer[index]}</div>
-                      <div>Capacity: {_capacity[index]}</div>
-                      <div>Enrolled Students: {_enrolledStudents[index]}</div>
+                      <div>Capacity: {Number(_capacity[index])}</div>
+                      <div>
+                        Enrolled Students: {Number(_enrolledStudents[index])}
+                      </div>
                       <div>Description: {_description[index]}</div>
                     </div>
                   </div>

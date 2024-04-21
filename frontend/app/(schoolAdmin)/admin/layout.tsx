@@ -29,8 +29,10 @@ export default function SchoolAdminLayout({
   useEffect(() => {
     // status !== "connected" ? router.push("/") : null;
     // status == "connected" ? router.push("/admin") : null;
-    address !== ("0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" || "")
-      ? router.push("/")
+    address !==
+    ("0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" ||
+      "0x6CD128fca70c1011A00a58f410BDaFE31A5D6cFc")
+      ? router.back()
       : null;
   }, [status]);
 
