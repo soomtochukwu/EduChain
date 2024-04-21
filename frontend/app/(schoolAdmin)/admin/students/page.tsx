@@ -79,7 +79,7 @@ const Students = () => {
       </div>
       <div>
         <span>Registered Student(s)</span>
-        <div className="flex">
+        <div className="flex flex-wrap">
           {result.data?.map((student) => {
             return (
               <div
