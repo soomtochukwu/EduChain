@@ -6,12 +6,12 @@ import React from "react";
 const Header = () => {
   return (
     <div className="flex justify-center">
-      <header className="px-4 lg:px-6 h-16 w-3/4   flex items-center border-b">
+      <header className="px-4 lg:px-6 h-16 w-full lg:py-9 rounded-b-xl lg:w-3/4 bg-green-200 flex items-center border-b">
         <div className="flex items-center  gap-2">
           <Image
             alt="Cuber Edu. Logo"
-            width={30}
-            height={30}
+            width={50}
+            height={50}
             src={"/images/logo.png "}
           />
           <span className="font-bold">EduChain</span>
