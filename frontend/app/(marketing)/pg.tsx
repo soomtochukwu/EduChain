@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import Link from "next/link";
-import Header from "./Header";
+import Header from "./_components/Header";
 import { useAccount } from "wagmi";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";

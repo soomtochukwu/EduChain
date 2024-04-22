@@ -1,12 +1,12 @@
 "use client";
 
 import React, { useEffect } from "react";
-import Header from "./Header";
 import FeaturesSection from "./_components/FeaturesSection";
 import Footer from "./_components/Footer";
 import HeroSection from "./_components/HeroSection";
 import { useAccount } from "wagmi";
 import { useRouter } from "next/navigation";
+import Header from "./_components/Header";
 function App() {
   const { status } = useAccount(),
     router = useRouter();
