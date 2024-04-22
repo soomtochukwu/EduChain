@@ -12,7 +12,7 @@ const Header = () => {
             alt="Cuber Edu. Logo"
             width={50}
             height={50}
-            src={"/logo.jpeg "}
+            src={"/logo.jpeg"}
           />
           <span className="font-bold">EduChain</span>
         </div>
