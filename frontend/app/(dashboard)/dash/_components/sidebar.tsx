@@ -8,7 +8,12 @@ import {
 } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { BellIcon, DashboardIcon } from "@radix-ui/react-icons";
+import {
+  BellIcon,
+  DashboardIcon,
+  PersonIcon,
+  LaptopIcon,
+} from "@radix-ui/react-icons";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import React from "react";
@@ -34,13 +39,18 @@ export const paths = [
   },
   {
     href: "/dash/courses",
-    name: "courses",
+    name: "Courses",
     Icon: DashboardIcon,
+  },
+  {
+    href: "/dash/students",
+    name: "Other students",
+    Icon: PersonIcon,
   },
   {
     href: "/dash/chat",
     name: "Ask AI",
-    Icon: DashboardIcon,
+    Icon: LaptopIcon,
   },
   {
     href: "/dash/ai-evaluations",
@@ -83,9 +93,9 @@ function Sidebar() {
                 </Link>
               );
             })}
-            {address == "0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" ? (
+            {/* {address == "0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" ? (
               <Link href={"/admin"}>Admin</Link>
-            ) : null}
+            ) : null} */}
           </nav>
         </div>
         {/* <div className="mt-auto p-4">

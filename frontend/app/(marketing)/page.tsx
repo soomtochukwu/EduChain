@@ -24,11 +24,11 @@ export default function Delete() {
       <div className="flex lg:w-full lg:justify-center">
         <section className="lg:w-3/5 py-12 md:py-24 lg:py-32">
           <div className="container mx-auto px-4 py-8">
-            <header className="flex justify-between items-baseline mb-8 w-fit">
+            <header className="flex justify-between items-end mb-8 w-fit">
               <h1 className="text-3xl font-bold text-gray-800">
                 EduChain{": "}
               </h1>
-              <p className="text-base text-gray-600">
+              <p className="text-xs text-gray-600 ">
                 Personalized Learning with Blockchain and AI (MVP)
               </p>
             </header>

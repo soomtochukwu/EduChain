@@ -50,10 +50,13 @@ export function Sidebar() {
             })}
 
             {address == ("0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" || "") ? (
-              <div className="flex items-center">
+              <Link
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                href={"/admin"}
+              >
                 <PersonStanding></PersonStanding>
-                <Link href={"/admin"}>Admin</Link>
-              </div>
+                Admin
+              </Link>
             ) : null}
           </nav>
         </div>
