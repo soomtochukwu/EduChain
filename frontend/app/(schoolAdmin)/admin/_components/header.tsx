@@ -125,7 +125,7 @@ function Header() {
         }}
         chainStatus="icon"
         showBalance={{
-          smallScreen: true,
+          smallScreen: false,
           largeScreen: true,
         }}
       />
