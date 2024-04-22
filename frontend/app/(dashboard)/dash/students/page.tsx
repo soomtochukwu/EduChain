@@ -18,14 +18,6 @@ const Students = () => {
     }),
     router = useRouter();
   //
-  useEffect(() => {
-    status == "success"
-      ? setTimeout(() => {
-          router.refresh();
-        }, 2000)
-      : null;
-  }, [status]);
-  //
   return (
     <main className="gap-4 p-4 lg:gap-6 lg:p-6  flex-col justify-center">
       <div>
