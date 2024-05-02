@@ -1,6 +1,8 @@
 "use client";
 
 import { schABI, schAddress } from "@/utils/schoolContract";
+import { CheckIcon } from "@radix-ui/react-icons";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { title } from "process";
@@ -16,6 +18,7 @@ export default function CoursesPage() {
     [courseTitle, setCourseTitle] = useState(""),
     [capacity, setCapacity] = useState(0),
     [description, setDescription] = useState(""),
+    [loading, setLoading] = useState(""),
     //
     [_title, _setTitle] = useState<string[]>([]),
     [_lecturer, _setLecturer] = useState<string[]>([]),
@@ -26,7 +29,7 @@ export default function CoursesPage() {
     { writeContractAsync, status } = useWriteContract(),
     { refresh } = useRouter();
 
-  let availableCourses = useReadContract({
+  let registeredCourses = useReadContract({
     abi: schABI,
     address: schAddress,
     functionName: "getAllCourses",
@@ -45,7 +48,7 @@ export default function CoursesPage() {
   });
 
   useEffect(() => {
-    const data = availableCourses.data;
+    const data = registeredCourses.data;
     //
     _setTitle(data?.[0] as string[]);
     _setLecturer(data?.[1] as string[]);
@@ -53,7 +56,7 @@ export default function CoursesPage() {
     _setEnrolledStudents(data?.[3] as bigint[]);
     _setDescription(data?.[4] as string[]);
     //
-  }, [availableCourses]);
+  }, [registeredCourses]);
 
   useEffect(() => {
     if (status == "success") {
@@ -63,10 +66,10 @@ export default function CoursesPage() {
     }
   }, [status]);
   return (
-    <main className="w-1/2  gap-4 p-4 lg:gap-6 lg:p-6 ">
-      <div>
-        create courses
+    <main className="w-3/4 flex self-center flex-col items-center justify-center gap-4 p-4 lg:gap-6 lg:p-6 ">
+      <div className="flex flex-wrap justify-center">
         <div className="w-fit ">
+          create courses
           <form className="flex flex-col">
             <div>
               <input
@@ -110,28 +113,76 @@ export default function CoursesPage() {
             {status == ("pending" || "success") ? status : "Create course"}
           </button>
         </div>
-        Existing Courses
-        <div className=" flex flex-wrap flex-col justify-center items-center ">
-          {_title !== undefined
-            ? _title.map((element, index) => {
-                return (
-                  <div
-                    key={index}
-                    className="md:w-fit p-2 my-2 bg-gray-200 rounded-lg"
-                  >
-                    <div>
-                      <div>Title: {_title[index]}</div>
-                      <div>Lecturer: {_lecturer[index]}</div>
-                      <div>Capacity: {Number(_capacity[index])}</div>
-                      <div>
-                        Enrolled Students: {Number(_enrolledStudents[index])}
+        <div>
+          Existing Courses
+          <div className="flex flex-wrap justify-center  ">
+            {_title !== undefined
+              ? _title.map((title, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={` cursor-pointer relative md:w-fit p-4 text-center border-4 shadow-md shadow-gray-400 m-4 hover:*:text-black  transition-all bg-gray-200 *:text-gray-600 rounded-lg `}
+                      //
+                    >
+                      <div
+                        className={
+                          (status == "pending"
+                            ? loading == title
+                              ? "visible"
+                              : "hidden"
+                            : "hidden") +
+                          " absolute flex justify-center items-center top-0 left-0 h-full w-full backdrop-blur-sm"
+                        }
+                      >
+                        <Image
+                          src={"/loading.gif"}
+                          alt={"loading"}
+                          width={70}
+                          height={70}
+                        ></Image>
                       </div>
-                      <div>Description: {_description[index]}</div>
+                      <div>
+                        <div className="text-2xl flex justify-center items-end">
+                          {" "}
+                          <b>{title}</b>
+                          {title ==
+                          _title[
+                            Number(registeredCourses.data?.[index])
+                          ] ? null : (
+                            <span className="text-xs text-green-700">
+                              <CheckIcon />
+                            </span>
+                          )}
+                        </div>
+
+                        <div className="text-justify p-3 m-2 bg-gray-300 rounded-sm w-96">
+                          {_description[index]}
+                        </div>
+                        <div className="*:bg-gray-300 *:m-2 *:p-1 *:rounded-sm *:w-96">
+                          <div className="">
+                            Lecturer:{" "}
+                            {_lecturer[index].replace(
+                              _lecturer[index].slice(
+                                4,
+                                _lecturer[index].length - 4
+                              ),
+                              "..."
+                            )}
+                          </div>
+                          <div>
+                            Capacity: {Number(_capacity[index])} students
+                          </div>
+                          <div>
+                            Enrolled Students:{" "}
+                            {Number(_enrolledStudents[index])} students
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                );
-              })
-            : null}
+                  );
+                })
+              : null}
+          </div>
         </div>
       </div>
     </main>
