@@ -108,7 +108,9 @@ function Header() {
               <LineChart className="h-4 w-4" />
               Latest Activity
             </Link>
-            {address == ("0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" || "") ? (
+            {address ==
+            ("0x49f2451AbEe35B261bB01f9d0CDC49f8f8df6E3f" ||
+              "0xE122199bB9617d8B0e814aC903042990155015b4") ? (
               <Link
                 href={"/admin"}
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
