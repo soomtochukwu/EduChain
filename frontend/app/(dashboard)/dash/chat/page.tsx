@@ -5,8 +5,10 @@ import Chat from "./_components/chat";
 
 export default function ChatPage() {
   return (
-    <div className="lg:w-2/3">
-      <Chat />
+    <div className="w-full">
+      <div className="lg:w-2/3">
+        <Chat />
+      </div>
     </div>
   );
 }
