@@ -9,21 +9,8 @@ import {
   lightTheme,
   darkTheme,
 } from "@rainbow-me/rainbowkit";
-import {
-  argentWallet,
-  trustWallet,
-  ledgerWallet,
-} from "@rainbow-me/rainbowkit/wallets";
-import {
-  arbitrum,
-  base,
-  mainnet,
-  optimism,
-  klaytnBaobab,
-  klaytn,
-  polygon,
-  sepolia,
-} from "wagmi/chains";
+import { metaMaskWallet, trustWallet } from "@rainbow-me/rainbowkit/wallets";
+import { arbitrumSepolia, sepolia } from "wagmi/chains";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { WagmiProvider } from "wagmi";
 
@@ -36,18 +23,15 @@ const config = getDefaultConfig({
     ...wallets,
     {
       groupName: "Other",
-      wallets: [argentWallet, trustWallet, ledgerWallet],
+      wallets: [metaMaskWallet, trustWallet],
     },
   ],
   chains: [
-    mainnet,
-    polygon,
-    klaytnBaobab,
-    klaytn,
-    optimism,
-    arbitrum,
-    base,
-    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true" ? [sepolia] : []),
+    arbitrumSepolia,
+    sepolia,
+    ...(process.env.NEXT_PUBLIC_ENABLE_TESTNETS === "true"
+      ? [arbitrumSepolia]
+      : []),
   ],
   ssr: true,
 });
@@ -67,7 +51,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
             borderRadius: "large",
           })}
           modalSize="compact"
-          initialChain={klaytnBaobab}
+          initialChain={arbitrumSepolia}
         >
           {children}
         </RainbowKitProvider>

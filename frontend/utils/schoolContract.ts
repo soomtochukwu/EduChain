@@ -1,4 +1,4 @@
-export const schAddress = '0x94A25af2Fef47c6C372FaB9D74F59a0Dd79af14F'
+export const schAddress = "0xE55aFa18AF1c611F9880A70eb061D2E17B5b7469";
 export const schABI = [
 	{
 		"inputs": [
