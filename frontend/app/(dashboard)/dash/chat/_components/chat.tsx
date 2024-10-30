@@ -31,7 +31,7 @@ export default function Chat() {
             key={m.id}
             className={
               m.role === "user"
-                ? "bg-gray-200 text-right p-4 whitespace-pre-wrap"
+                ? "bg-gray-300 text-right p-4 whitespace-pre-wrap"
                 : "bg-gray-100 p-4 whitespace-pre-wrap"
             }
           >
