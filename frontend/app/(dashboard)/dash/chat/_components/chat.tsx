@@ -31,11 +31,11 @@ export default function Chat() {
             key={m.id}
             className={
               m.role === "user"
-                ? "bg-gray-200 text-right"
-                : "bg-gray-100" + " " + "p-2 whitespace-pre-wrap"
+                ? "bg-gray-200 text-right p-4 whitespace-pre-wrap"
+                : "bg-gray-100 p-4 whitespace-pre-wrap"
             }
           >
-            {m.role === "user" ? "User: " : "AI: "}
+            {/* {m.role === "user" ? "User: " : "AI: "} */}
             {m.content}
           </code>
         ))}
