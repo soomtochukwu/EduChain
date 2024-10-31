@@ -1,6 +1,6 @@
 # EduChain: Personalized Learning with Blockchain and AI (MVP)
 
-EduChain ([visit here ](https://cyberhack.vercel.app/)) is a revolutionary personalized learning system that is undergoing active development in the [Arbitrum ](https://arbitrum.io) ecosystem. It leverages the power of blockchain and AI to create an engaging and rewarding educational experience. Our Minimum Viable Product (MVP) focuses on core functionalities to validate the concept and gather user feedback for future iterations.
+EduChain ([visit here ](https://cyberhack.vercel.app/)) is a revolutionary personalized learning system that is undergoing active development in the [Arbitrum ](https://arbitrum.io) ecosystem ([see the smart contract](https://sepolia.arbiscan.io/address/0xE55aFa18AF1c611F9880A70eb061D2E17B5b7469)). It leverages the power of blockchain and AI to create an engaging and rewarding educational experience. Our Minimum Viable Product (MVP) focuses on core functionalities to validate the concept and gather user feedback for future iterations.
 
 ## Key Features:
 
