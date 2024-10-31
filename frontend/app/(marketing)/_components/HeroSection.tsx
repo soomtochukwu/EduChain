@@ -8,7 +8,7 @@ const HeroSection = () => {
     <div
       className="bg-cover flex flex-col justify-center items-center bg-center relative h-screen"
       style={{
-        backgroundImage: "url('/hero-bg-1.gif')",
+        backgroundImage: "url('/hero_bg.png')",
         minHeight: "500px",
       }}
     >
